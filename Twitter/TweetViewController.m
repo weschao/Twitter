@@ -15,8 +15,6 @@
 
 @interface TweetViewController ()
 
-// TODO: I tried naming this _tweet, but I got a compiler error: duplicate variables in TweetCell.m and this class.
-@property Tweet* _mTweet;
 @end
 
 
@@ -25,15 +23,15 @@
     ComposeViewController *vc = [[ComposeViewController alloc] init];
     vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     
-    vc.initialText = [NSString stringWithFormat:@"@%@", _mTweet.author.screenName];
-    vc.replyToId = _mTweet.tweetId;
+    vc.initialText = [NSString stringWithFormat:@"@%@", self.tweet.author.screenName];
+    vc.replyToId = self.tweet.tweetId;
     [self presentViewController:vc animated:YES completion:nil];
     
 }
 - (IBAction)onFavoriteButton:(id)sender {
-    if (_mTweet.favorited)
+    if (self.tweet.favorited)
     {
-        [[TwitterClient sharedInstance] unFavoriteTweetWithId:_mTweet.tweetId completion:^(Tweet *tweet, NSError *error) {
+        [[TwitterClient sharedInstance] unFavoriteTweetWithId:self.tweet.tweetId completion:^(Tweet *tweet, NSError *error) {
             if (tweet)
             {
                 self.tweet = tweet;
@@ -44,7 +42,7 @@
     }
     else
     {
-        [[TwitterClient sharedInstance] favoriteTweetWithId:_mTweet.tweetId completion:^(Tweet *tweet, NSError *error) {
+        [[TwitterClient sharedInstance] favoriteTweetWithId:self.tweet.tweetId completion:^(Tweet *tweet, NSError *error) {
             if (tweet)
             {
                 self.tweet = tweet;
@@ -57,12 +55,16 @@
 }
 
 - (IBAction)onRetweetButton:(id)sender {
-    if (_mTweet.retweeted)
+    if (self.tweet.retweeted)
     {
-        [[TwitterClient sharedInstance] undoRetweetWithId:_mTweet.tweetId completion:^(NSError *error) {
-            NSLog(@"unretweeted!");
+        [[TwitterClient sharedInstance] undoRetweetWithId:self.tweet.tweetId completion:^(NSError *error) {
             if (! error)
             {
+                // need to set these manually since the API does not return the parent tweet
+                self.tweet.retweetId = 0;
+                self.tweet.retweetCount -= 1;
+                self.tweet.retweeted = NO;
+                
                 [self updateFavoriteLabel];
                 [self.retweetButton setImage:[UIImage imageNamed:@"RetweetIcon"] forState:UIControlStateNormal];
             }
@@ -70,11 +72,14 @@
     }
     else
     {
-        [[TwitterClient sharedInstance] retweetWithId:_mTweet.tweetId completion:^(Tweet *tweet, NSError *error) {
-            NSLog(@"retweeted: %d", tweet.retweeted);
+        [[TwitterClient sharedInstance] retweetWithId:self.tweet.tweetId completion:^(Tweet *tweet, NSError *error) {
             if (tweet)
             {
-                self.tweet = tweet;
+                // need to set these manually since the API returns the retweet, and not the original tweet
+                self.tweet.retweetId = tweet.tweetId;
+                self.tweet.retweeted = YES;
+                self.tweet.retweetCount += 1;
+
                 [self updateFavoriteLabel];
                 [self.retweetButton setImage:[UIImage imageNamed:@"RetweetOnIcon"] forState:UIControlStateNormal];
             }
@@ -88,28 +93,28 @@
     // Do any additional setup after loading the view from its nib.
     
     // profile pic
-    [self.profileImageView setImageWithURL:[NSURL URLWithString:_mTweet.author.profileImageUrl]];
+    [self.profileImageView setImageWithURL:[NSURL URLWithString:self.tweet.author.profileImageUrl]];
     
-    self.createdAtLabel.text = _mTweet.createdAt.timeAgoSinceNow;
-    self.nameLabel.text = _mTweet.author.name;
-    self.handleLabel.text = [NSString stringWithFormat:@"@%@", _mTweet.author.screenName];
-    self.tweetTextLabel.text = _mTweet.text;
+    self.createdAtLabel.text = self.tweet.createdAt.timeAgoSinceNow;
+    self.nameLabel.text = self.tweet.author.name;
+    self.handleLabel.text = [NSString stringWithFormat:@"@%@", self.tweet.author.screenName];
+    self.tweetTextLabel.text = self.tweet.text;
     
     [self updateFavoriteLabel];
     
-    if (_mTweet.favorited)
+    if (self.tweet.favorited)
         [self.favoriteButton setImage:[UIImage imageNamed:@"FavoriteOnIcon"] forState:UIControlStateNormal];
-    if (_mTweet.retweeted)
+    if (self.tweet.retweeted)
         [self.retweetButton setImage:[UIImage imageNamed:@"RetweetOnIcon"] forState:UIControlStateNormal];
 
 }
 
 - (void) updateFavoriteLabel
 {
-    NSString * retweetDescriptor = (_mTweet.retweetCount == 1) ? @"Retweet" : @"Retweets";
+    NSString * retweetDescriptor = (self.tweet.retweetCount == 1) ? @"Retweet" : @"Retweets";
     
-    NSString * favoriteDescriptor = (_mTweet.favoriteCount == 1) ? @"Favorite" : @"Favorites";
-    self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d %@ %d %@", _mTweet.retweetCount, retweetDescriptor, _mTweet.favoriteCount, favoriteDescriptor];
+    NSString * favoriteDescriptor = (self.tweet.favoriteCount == 1) ? @"Favorite" : @"Favorites";
+    self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d %@ %d %@", self.tweet.retweetCount, retweetDescriptor, self.tweet.favoriteCount, favoriteDescriptor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -122,12 +127,6 @@
     return YES;
 }
 
-
-Tweet *_mTweet = nil;
-
-- (void) setTweet:(Tweet*) tweet {
-    _mTweet = tweet;
-}
 
 /*
 #pragma mark - Navigation

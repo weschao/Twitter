@@ -28,9 +28,6 @@
         self.author = [[User alloc] initWithDictionary:dictionary[@"user"]];
 
         self.tweetId = [dictionary[@"id"] longValue];
-                
-//        NSLog(@"%@", [dictionary valueForKeyPath:@"current_user_retweet"]);
-//        NSLog(@"%@", [dictionary valueForKeyPath:@"current_user_retweet.id_str"]);
         self.retweetId = [[dictionary valueForKeyPath:@"current_user_retweet.id"] longValue];
     }
     
