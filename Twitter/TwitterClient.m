@@ -88,8 +88,6 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     NSDictionary * params = [NSDictionary dictionaryWithObject:[NSNumber numberWithLong:tweetId] forKey:@"id"];
 
     [self POST:@"1.1/favorites/create.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@", responseObject);
-        
         Tweet * tweet = [[Tweet alloc] initWithDictionary:responseObject];
         
         completion (tweet, nil);

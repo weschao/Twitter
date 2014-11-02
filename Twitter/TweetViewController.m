@@ -26,6 +26,7 @@
     vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     
     vc.initialText = [NSString stringWithFormat:@"@%@", _mTweet.author.screenName];
+    vc.replyToId = _mTweet.tweetId;
     [self presentViewController:vc animated:YES completion:nil];
     
 }
@@ -33,8 +34,6 @@
     if (_mTweet.favorited)
     {
         [[TwitterClient sharedInstance] unFavoriteTweetWithId:_mTweet.tweetId completion:^(Tweet *tweet, NSError *error) {
-
-            NSLog(@"%d %d", tweet.favorited, tweet.favoriteCount);
             if (tweet)
             {
                 self.tweet = tweet;
@@ -46,7 +45,6 @@
     else
     {
         [[TwitterClient sharedInstance] favoriteTweetWithId:_mTweet.tweetId completion:^(Tweet *tweet, NSError *error) {
-            NSLog(@"%d %d", tweet.favorited, tweet.favoriteCount);
             if (tweet)
             {
                 self.tweet = tweet;
@@ -65,6 +63,7 @@
             NSLog(@"unretweeted!");
             if (! error)
             {
+                [self updateFavoriteLabel];
                 [self.retweetButton setImage:[UIImage imageNamed:@"RetweetIcon"] forState:UIControlStateNormal];
             }
         }];
@@ -76,6 +75,7 @@
             if (tweet)
             {
                 self.tweet = tweet;
+                [self updateFavoriteLabel];
                 [self.retweetButton setImage:[UIImage imageNamed:@"RetweetOnIcon"] forState:UIControlStateNormal];
             }
         }];
@@ -106,8 +106,10 @@
 
 - (void) updateFavoriteLabel
 {
+    NSString * retweetDescriptor = (_mTweet.retweetCount == 1) ? @"Retweet" : @"Retweets";
+    
     NSString * favoriteDescriptor = (_mTweet.favoriteCount == 1) ? @"Favorite" : @"Favorites";
-    self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d %@", _mTweet.favoriteCount, favoriteDescriptor];
+    self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d %@ %d %@", _mTweet.retweetCount, retweetDescriptor, _mTweet.favoriteCount, favoriteDescriptor];
 }
 
 - (void)didReceiveMemoryWarning {

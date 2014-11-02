@@ -22,15 +22,15 @@
         
         self.favoriteCount = [dictionary[@"favorite_count"] intValue];
         self.favorited = (BOOL) [dictionary[@"favorited"] boolValue];
+        self.retweetCount = [dictionary[@"retweet_count"] intValue];
         self.retweeted = (BOOL) [dictionary[@"retweeted"] boolValue];
         self.createdAt = [formatter dateFromString:createdAtString];
         self.author = [[User alloc] initWithDictionary:dictionary[@"user"]];
 
         self.tweetId = [dictionary[@"id"] longValue];
-        
-        
-        NSLog(@"%@", [dictionary valueForKeyPath:@"current_user_retweet"]);
-        NSLog(@"%@", [dictionary valueForKeyPath:@"current_user_retweet.id_str"]);
+                
+//        NSLog(@"%@", [dictionary valueForKeyPath:@"current_user_retweet"]);
+//        NSLog(@"%@", [dictionary valueForKeyPath:@"current_user_retweet.id_str"]);
         self.retweetId = [[dictionary valueForKeyPath:@"current_user_retweet.id"] longValue];
     }
     

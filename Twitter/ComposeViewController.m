@@ -25,7 +25,7 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    self.charactersRemainingLabel.text = [NSString stringWithFormat:@"%d", 140 - self.tweetTextView.text.length];
+    self.charactersRemainingLabel.text = [NSString stringWithFormat:@"%ld", 140 - self.tweetTextView.text.length];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
@@ -35,15 +35,29 @@
 }
 
 - (IBAction)onTweet:(id)sender {
-    
     NSString * update = self.tweetTextView.text;
-    
-    [[TwitterClient sharedInstance] postUpdate:update completion:^(Tweet *tweet, NSError *error) {
-        NSLog(@"%@", tweet.text);
-        [self dismissViewControllerAnimated:YES completion:nil];
 
-    }];
+    if (self.replyToId == 0)
+    {
+        [[TwitterClient sharedInstance] postUpdate:update completion:^(Tweet *tweet, NSError *error) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            NSDictionary* dict = [NSDictionary dictionaryWithObject: tweet forKey:@"tweet"];
 
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"NewTweet"
+                                                                object:nil
+                                                              userInfo:dict];
+        }];
+    }
+    else
+    {
+        NSDictionary * params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 update, @"status",
+                                 self.replyToId, @"in_reply_to_status_id", nil];
+        [[TwitterClient sharedInstance] postUpdateWithParams:params completion:^(Tweet *tweet, NSError *error) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+
+    }
 }
 - (IBAction)onBack:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -52,8 +52,23 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(onLogout:)];
 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Compose" style:UIBarButtonItemStylePlain target:self action:@selector(onEditBegin:)];
-
+    
+    // register for notifications when a new tweet is composed
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNewTweet:) name:@"NewTweet" object:nil];
+    
     [self reloadData];
+}
+
+- (void) onNewTweet:(NSNotification *) notification {
+    NSDictionary * dictionary = notification.userInfo;
+    Tweet * tweet = [dictionary objectForKey:@"tweet"];
+
+    NSMutableArray * array = [NSMutableArray array];
+    [array addObject: tweet];
+    [array addObjectsFromArray:self.tweets];
+    
+    self.tweets = array;
+    [self.tweetTableView reloadData];
 }
 
 - (void) reloadData {
@@ -63,6 +78,28 @@
     }];
     
     [self.refreshControl endRefreshing];
+}
+
+// implement infinite scrolling
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    if (indexPath.row == self.tweets.count - 1)
+    {
+        Tweet* oldestTweet = self.tweets[indexPath.row];
+        NSNumber * tweetId = [NSNumber numberWithLong:oldestTweet.tweetId];
+        
+        NSDictionary * params = [NSDictionary dictionaryWithObject:tweetId forKey:@"max_id"];
+        [[TwitterClient sharedInstance] homeTimelineWithParams:params completion:^(NSArray *tweets, NSError *error) {
+
+            NSMutableArray * array = [NSMutableArray array];
+            [array addObjectsFromArray:self.tweets];
+            [array addObjectsFromArray:tweets];
+            self.tweets = array;
+
+            [self.tweetTableView reloadData];
+        }];
+        
+    }
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

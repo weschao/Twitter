@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Tweet.h"
 
 @interface ComposeViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -15,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *charactersRemainingLabel;
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
 
+@property long replyToId;
 @property NSString *initialText;
 @end

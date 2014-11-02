@@ -15,6 +15,7 @@
 @property (nonatomic) User * author;
 @property (nonatomic) int favoriteCount;
 @property (nonatomic) BOOL favorited;
+@property (nonatomic) int retweetCount;
 @property (nonatomic) BOOL retweeted;
 @property (nonatomic) long tweetId;
 @property (nonatomic) long retweetId;
