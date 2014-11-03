@@ -2,7 +2,7 @@
 
 This is a basic twitter app to read and compose tweets using the [Twitter API](https://apps.twitter.com/).
 
-Time spent: 11h. 3:20 
+Time spent: 11.5h
 
 ### Features
 
@@ -25,13 +25,13 @@ Time spent: 11h. 3:20
  - [x] Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
  - [x] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
- - [ ] Tapping on a profile icon displays the user's profile
- - [ ] Display an indicator if the tweet is retweeted
 
 ### Walkthrough
-![Video Walkthrough](http://i.imgur.com/4pDzo12.gif)
+![Video Walkthrough](http://i.imgur.com/fdB7qE4.gifv)
 
 Credits
 ---------
 * [Twitter API](https://apps.twitter.com/)
 * [AFNetworking](https://github.com/AFNetworking/AFNetworking)
+* [DateTools](https://github.com/MatthewYork/DateTools)
+* [BDBOAuth1Manager](https://github.com/bdbergeron/BDBOAuth1Manager)

@@ -56,6 +56,8 @@
     // register for notifications when a new tweet is composed
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNewTweet:) name:@"NewTweet" object:nil];
     
+    self.title = @"Home";
+    
     [self reloadData];
 }
 

@@ -15,7 +15,12 @@
     self = [super init];
     if (self) {
     
-        self.text = dictionary[@"text"];
+        // URL decode the string
+        NSString *result = [(NSString *) dictionary[@"text"] stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+        result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        result = [result stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+        self.text = result;
+        
         NSString *createdAtString = dictionary[@"created_at"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"EEE MMM d HH:mm:ss Z y";

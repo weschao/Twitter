@@ -21,7 +21,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:UserDidLogoutNotification object:nil];
@@ -38,6 +37,21 @@
     
     UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:self.window.rootViewController];
     self.window.rootViewController = nvc;
+
+    // custom nav bar color
+    UIColor * navBarColor = [UIColor colorWithRed:84.0/255.0f green:172.0/255.0f blue:238.0/255.0f alpha:1];
+    nvc.navigationBar.barTintColor = navBarColor;
+    
+    // custom nav bar text
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, 1);
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                          shadow, NSShadowAttributeName, nil]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+
+    
     
     [self.window makeKeyAndVisible];
     return YES;

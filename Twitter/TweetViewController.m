@@ -107,6 +107,7 @@
     if (self.tweet.retweeted)
         [self.retweetButton setImage:[UIImage imageNamed:@"RetweetOnIcon"] forState:UIControlStateNormal];
 
+    self.title = @"Tweet";
 }
 
 - (void) updateFavoriteLabel

@@ -18,8 +18,9 @@
 - (IBAction)onLoginButton:(id)sender {
     [[TwitterClient sharedInstance] loginWithCompletion:^(User *user, NSError *error) {
         if (user != nil) {
-            // modally present tweets view
-            [self presentViewController:[[TweetsViewController alloc] init] animated:YES completion:nil];
+            
+            TweetsViewController * tvc = [[TweetsViewController alloc] init];
+            [self.navigationController pushViewController:tvc animated:YES];
         } else {
             // present error view
         }
@@ -35,6 +36,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 
 /*
