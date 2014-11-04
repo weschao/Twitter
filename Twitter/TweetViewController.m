@@ -12,6 +12,7 @@
 #import "NSDate+DateTools.h"
 #import "TwitterClient.h"
 #import "ComposeViewController.h"
+#import "ProfileViewController.h"
 
 @interface TweetViewController ()
 
@@ -19,6 +20,11 @@
 
 
 @implementation TweetViewController
+- (IBAction)onTapProfileImage:(id)sender {
+    ProfileViewController * pvc = [[ProfileViewController alloc] initWithUser:self.tweet.author];
+    
+    [self.navigationController pushViewController:pvc animated:YES];
+}
 - (IBAction)onReplyButton:(id)sender {
     ComposeViewController *vc = [[ComposeViewController alloc] init];
     vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;

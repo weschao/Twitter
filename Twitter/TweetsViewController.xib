@@ -33,6 +33,7 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="AGs-NB-Cuh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9qY-wY-9fW"/>
                 <constraint firstAttribute="trailing" secondItem="AGs-NB-Cuh" secondAttribute="trailing" id="C95-GJ-28f"/>
@@ -56,7 +57,15 @@
                     <exclude reference="hdQ-aq-bMT"/>
                 </mask>
             </variation>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="VR9-OC-wG0" appends="YES" id="uqg-4H-B4X"/>
+            </connections>
             <point key="canvasLocation" x="9" y="151"/>
         </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="VR9-OC-wG0">
+            <connections>
+                <action selector="onSwipe:" destination="-1" id="vei-P8-glK"/>
+            </connections>
+        </panGestureRecognizer>
     </objects>
 </document>

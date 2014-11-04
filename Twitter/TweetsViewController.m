@@ -14,11 +14,14 @@
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
 #import "TweetViewController.h"
+#import "MenuViewController.h"
 
 @interface TweetsViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property NSArray * tweets;
 @property (nonatomic) TweetCell* prototypeCell;
 @property UIRefreshControl *refreshControl;
+@property MenuViewController * menuVC;
+
 @end
 
 @implementation TweetsViewController
@@ -29,12 +32,35 @@
     [self presentViewController:vc animated:YES completion:nil];
 
 }
+- (IBAction)onSwipe:(UIPanGestureRecognizer *)sender {
+    [self.view addSubview:self.menuVC.view];
+
+    if (sender.state == UIGestureRecognizerStateBegan)
+    {
+        // TODO: make a menu button that bounces when you start swiping, also allow menu button to be tapped to open menu
+    }
+    else if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        if ([sender translationInView:self.view].x > 0) {
+            [self.menuVC toggleMenu:YES];
+        }
+        else if ([sender translationInView:self.view].x < 0) {
+            [self.menuVC toggleMenu:NO];
+        }
+        
+    }
+    
+}
+
 - (IBAction)onLogout:(id)sender {
     [User logout];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // set up hamburger menu off-screen
+    self.menuVC = [[MenuViewController alloc] initWithCallingViewController:self];
     
     // table view setup
     self.tweetTableView.delegate = self;

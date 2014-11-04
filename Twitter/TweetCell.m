@@ -10,7 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "NSDate+DateTools.h"
 
-@interface User()
+@interface Tweet()
 
 @property Tweet* _tweet;
 @end
@@ -29,7 +29,6 @@
 
     // Configure the view for the selected state
 }
-
 
 Tweet *_tweet = nil;
 

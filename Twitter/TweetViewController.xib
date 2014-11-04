@@ -40,12 +40,16 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xka-fj-g5G">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xka-fj-g5G">
                     <rect key="frame" x="8" y="48" width="48" height="48"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" constant="48" id="LkQ-2R-9eZ"/>
                         <constraint firstAttribute="height" constant="48" id="VaF-So-28X"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="1bi-qG-Mfx" appends="YES" id="xjm-44-u8r"/>
+                    </connections>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11/2/14, 9:01 am" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cl4-Cg-lG1">
                     <rect key="frame" x="8" y="133" width="88" height="14"/>
@@ -182,6 +186,11 @@
             </variation>
             <point key="canvasLocation" x="146" y="215"/>
         </view>
+        <tapGestureRecognizer id="1bi-qG-Mfx">
+            <connections>
+                <action selector="onTapProfileImage:" destination="-1" id="hLO-k3-72U"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="FavoriteIcon" width="16" height="16"/>
