@@ -79,7 +79,18 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
         NSArray *tweets = [Tweet tweetsWithArray:responseObject];
         completion (tweets, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Failed to get timeline");
+        NSLog(@"Failed to get home timeline: %@", error);
+        completion(nil, error);
+    }];
+}
+
+- (void) mentionsTimelineWithParams:(NSDictionary *) params completion:(void (^)(NSArray *tweets, NSError *error)) completion
+{
+    [self GET:@"1.1/statuses/mentions_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *tweets = [Tweet tweetsWithArray:responseObject];
+        completion (tweets, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Failed to get mentions timeline");
         completion(nil, error);
     }];
 }

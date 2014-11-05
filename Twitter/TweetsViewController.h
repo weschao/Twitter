@@ -10,5 +10,6 @@
 
 @interface TweetsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *tweetTableView;
+@property SEL timelineSelector;
 
 @end

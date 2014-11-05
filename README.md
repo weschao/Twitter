@@ -4,7 +4,6 @@ This is a basic twitter app to read and compose tweets using the [Twitter API](h
 
 Time spent: 11.5h week 1, 2.5h week 2 3:00
 
-add hamburger menu, profile view
 
 ### Features
 
@@ -21,9 +20,9 @@ add hamburger menu, profile view
  - [ ] Provide controls for retweet/favorite/reply within the timeline.
 * Week 2: Hamburger menu
  - [x] Dragging anywhere in the view should reveal the menu.
- - [ ] The menu should include links to your profile, the home timeline, and the mentions view.
+ - [x] The menu should include links to your profile, the home timeline, and the mentions view.
 * Week 2: Profile page
- - [ ] Contains the user header view
+ - [x] Contains the user header view
  - [ ] Contains a section with the users basic stats: # tweets, # following, # followers
 Week 2: Home Timeline
  - [ ] Tapping on a user image should bring up that user's profile page

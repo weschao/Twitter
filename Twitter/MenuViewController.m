@@ -98,6 +98,7 @@
         {
             // Load the home timeline
             TweetsViewController * tvc = [[TweetsViewController alloc] init];
+            tvc.timelineSelector = @selector(homeTimelineWithParams:completion:);
             
             [self.callingViewController.navigationController pushViewController:tvc animated:YES];
                                           
@@ -109,10 +110,17 @@
             ProfileViewController * pvc = [[ProfileViewController alloc] initWithUser:[User currentUser]];
             
             [self.callingViewController.navigationController pushViewController:pvc animated:YES];
+            break;
         }
         case 2:
+        {
             // Load the mentions view
+            TweetsViewController * tvc = [[TweetsViewController alloc] init];
+            tvc.timelineSelector = @selector(mentionsTimelineWithParams:completion:);
+            
+            [self.callingViewController.navigationController pushViewController:tvc animated:YES];
             break;
+        }
     }
     [self toggleMenu:NO];
     

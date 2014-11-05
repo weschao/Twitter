@@ -82,6 +82,13 @@
     // register for notifications when a new tweet is composed
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNewTweet:) name:@"NewTweet" object:nil];
     
+    // in case someone forgot to initialize it
+    if (self.timelineSelector == nil)
+    {
+        self.timelineSelector = @selector(homeTimelineWithParams:completion:);
+    }
+    
+        
     self.title = @"Home";
     
     [self reloadData];
@@ -100,10 +107,11 @@
 }
 
 - (void) reloadData {
-    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+    [[TwitterClient sharedInstance] performSelector:self.timelineSelector withObject:nil withObject:[^(NSArray *tweets, NSError *error){
         self.tweets = tweets;
         [self.tweetTableView reloadData];
-    }];
+    
+    } copy]];
     
     [self.refreshControl endRefreshing];
 }
@@ -117,7 +125,7 @@
         NSNumber * tweetId = [NSNumber numberWithLong:oldestTweet.tweetId];
         
         NSDictionary * params = [NSDictionary dictionaryWithObject:tweetId forKey:@"max_id"];
-        [[TwitterClient sharedInstance] homeTimelineWithParams:params completion:^(NSArray *tweets, NSError *error) {
+        [[TwitterClient sharedInstance] performSelector:self.timelineSelector withObject:params withObject:[^(NSArray *tweets, NSError *error){
 
             NSMutableArray * array = [NSMutableArray array];
             [array addObjectsFromArray:self.tweets];
@@ -125,7 +133,7 @@
             self.tweets = array;
 
             [self.tweetTableView reloadData];
-        }];
+        } copy]];
         
     }
 }
