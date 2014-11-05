@@ -2,8 +2,7 @@
 
 This is a basic twitter app to read and compose tweets using the [Twitter API](https://apps.twitter.com/).
 
-Time spent: 11.5h week 1, 2.5h week 2 3:00
-
+Time spent: 11.5h week 1, 5.5h week 2 6:00
 
 ### Features
 
@@ -38,7 +37,7 @@ Week 2: Home Timeline
  - [x] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 * Week 2: Profile page
  - [ ] Implement the paging view for the user description.
- - [ ] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
+ - [x] As the paging view moves, increase the opacity of the background screen.
  - [ ] Pulling down the profile page should blur and resize the header image.
 * Week 2: Account switching
  - [ ] Long press on tab bar to bring up Account view with animation
