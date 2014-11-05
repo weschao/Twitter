@@ -79,6 +79,7 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
         NSArray *tweets = [Tweet tweetsWithArray:responseObject];
         completion (tweets, nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Failed to get timeline");
         completion(nil, error);
     }];
 }

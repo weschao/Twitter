@@ -8,6 +8,7 @@
 
 #import "MenuViewController.h"
 #import "ProfileViewController.h"
+#import "TweetsViewController.h"
 
 @interface MenuViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property BOOL displayingMenu;
@@ -94,7 +95,14 @@
     switch (indexPath.row)
     {
         case 0:
+        {
             // Load the home timeline
+            TweetsViewController * tvc = [[TweetsViewController alloc] init];
+            
+            [self.callingViewController.navigationController pushViewController:tvc animated:YES];
+                                          
+            break;
+        }
         case 1:
         {
             // Load the user's profile

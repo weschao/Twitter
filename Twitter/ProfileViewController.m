@@ -19,18 +19,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    [self.photoView setImageWithURL:[NSURL URLWithString: self.user.bannerImageUrl]];
+    [self.photoView setAlpha:0.8f];
+    [self.view sendSubviewToBack: self.photoView];
+
     // profile pic
     [self.profileImageView setImageWithURL:[NSURL URLWithString:self.user.profileImageUrl]];
+    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height /2;
+    self.profileImageView.layer.masksToBounds = YES;
     
     self.nameLabel.text = self.user.name;
+    self.nameLabel.textColor = [UIColor whiteColor];
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", self.user.screenName];
+    self.handleLabel.textColor = [UIColor whiteColor];
 
 }
-- (IBAction)onClose:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -46,6 +49,9 @@
     return self;
 }
 
+- (BOOL) prefersStatusBarHidden{
+    return YES;
+}
 
 /*
 #pragma mark - Navigation

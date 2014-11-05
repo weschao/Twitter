@@ -139,6 +139,7 @@
     cell = [self.tweetTableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     
     cell.tweet = self.tweets[indexPath.row];
+//    cell.callingViewController = self;
     
     return cell;
 }
