@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zZa-o3-xL5">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zZa-o3-xL5">
                         <rect key="frame" x="0.0" y="2" width="48" height="48"/>
                         <gestureRecognizers/>
                         <constraints>
@@ -31,21 +31,6 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracking baby sea turles as they swim for their lives; come take a look at the New York Times website!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJM-Nk-pYn">
-                        <rect key="frame" x="56" y="28" width="310" height="80"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="310" id="1XA-xK-kfS"/>
-                            <constraint firstAttribute="width" constant="320" id="YvB-nS-7k1"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="YvB-nS-7k1"/>
-                            </mask>
-                        </variation>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@nytimes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnh-Vv-rxZ">
                         <rect key="frame" x="205" y="7" width="50" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -58,28 +43,33 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="This is a tweet!" translatesAutoresizingMaskIntoConstraints="NO" id="Zye-EA-Xg2">
+                        <rect key="frame" x="56" y="28" width="310" height="72"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="310" id="dqz-ab-BVE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="xnh-Vv-rxZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="1pg-qs-bo3"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="MJM-Nk-pYn" secondAttribute="trailing" constant="8" id="2Oz-wL-YOa"/>
-                    <constraint firstItem="MJM-Nk-pYn" firstAttribute="top" secondItem="cEo-4r-Kjn" secondAttribute="bottom" constant="6" id="7WX-d1-eIh"/>
                     <constraint firstItem="cEo-4r-Kjn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="Fay-DZ-YEx"/>
-                    <constraint firstItem="MJM-Nk-pYn" firstAttribute="leading" secondItem="zZa-o3-xL5" secondAttribute="trailing" constant="8" id="Ra3-70-6z4"/>
                     <constraint firstItem="cEo-4r-Kjn" firstAttribute="leading" secondItem="zZa-o3-xL5" secondAttribute="trailing" constant="8" id="UcR-aY-Nfc"/>
                     <constraint firstItem="zZa-o3-xL5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="YSw-ew-Y6c"/>
                     <constraint firstItem="xnh-Vv-rxZ" firstAttribute="leading" secondItem="cEo-4r-Kjn" secondAttribute="trailing" constant="8" id="cwT-Nx-SoH"/>
                     <constraint firstItem="Lvh-eN-Ww3" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-53" id="cxP-ie-SgC"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Zye-EA-Xg2" secondAttribute="bottom" constant="8" id="dn6-mb-VyQ"/>
                     <constraint firstItem="Lvh-eN-Ww3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" id="ehW-8H-H0H"/>
                     <constraint firstAttribute="trailing" secondItem="Lvh-eN-Ww3" secondAttribute="trailing" constant="8" id="i35-hw-U9v"/>
                     <constraint firstItem="Lvh-eN-Ww3" firstAttribute="leading" secondItem="xnh-Vv-rxZ" secondAttribute="trailing" constant="33" id="lmy-RK-LEk"/>
                     <constraint firstItem="zZa-o3-xL5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mCx-1Y-RrD"/>
-                    <constraint firstItem="MJM-Nk-pYn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="mnx-GB-Nxr"/>
-                    <constraint firstAttribute="bottom" secondItem="MJM-Nk-pYn" secondAttribute="bottom" constant="8" id="znh-is-p3Y"/>
+                    <constraint firstItem="Zye-EA-Xg2" firstAttribute="leading" secondItem="zZa-o3-xL5" secondAttribute="trailing" constant="8" id="pEV-kT-I8H"/>
+                    <constraint firstItem="Zye-EA-Xg2" firstAttribute="top" secondItem="cEo-4r-Kjn" secondAttribute="bottom" constant="6" id="zZa-MU-98P"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
-                        <exclude reference="2Oz-wL-YOa"/>
-                        <exclude reference="mnx-GB-Nxr"/>
                         <exclude reference="cxP-ie-SgC"/>
                         <exclude reference="lmy-RK-LEk"/>
                     </mask>
@@ -89,7 +79,7 @@
                 <outlet property="handleLabel" destination="xnh-Vv-rxZ" id="vzw-mj-53i"/>
                 <outlet property="profileImageView" destination="zZa-o3-xL5" id="b0y-ua-eN3"/>
                 <outlet property="timestampLabel" destination="Lvh-eN-Ww3" id="XGR-8T-g7O"/>
-                <outlet property="tweetTextLabel" destination="MJM-Nk-pYn" id="ANt-mD-aZB"/>
+                <outlet property="tweetTextView" destination="Zye-EA-Xg2" id="b38-xM-a2B"/>
                 <outlet property="usernameLabel" destination="cEo-4r-Kjn" id="8so-Mg-lqb"/>
             </connections>
             <point key="canvasLocation" x="355.5" y="235.5"/>

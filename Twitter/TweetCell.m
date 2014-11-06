@@ -12,7 +12,6 @@
 
 @interface Tweet()
 
-@property Tweet* _tweet;
 @end
 
 @implementation TweetCell
@@ -22,6 +21,13 @@
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
+    // allow tapping on the profile picture
+    UITapGestureRecognizer * tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapImage:)];
+    [self.profileImageView addGestureRecognizer:tapGR];
+}
+- (IBAction)onTapImage:(UITapGestureRecognizer *)sender {
+    if ([self.delegate respondsToSelector:@selector(onTapProfileImage:)])
+        [self.delegate onTapProfileImage:self.tweet.author];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -30,7 +36,6 @@
     // Configure the view for the selected state
 }
 
-Tweet *_tweet = nil;
 
 - (void) setTweet:(Tweet*) tweet {
     _tweet = tweet;
@@ -38,10 +43,14 @@ Tweet *_tweet = nil;
     // profile pic
     [self.profileImageView setImageWithURL:[NSURL URLWithString:tweet.author.profileImageUrl]];
     
+    UITapGestureRecognizer * tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapImage:)];
+    [self.profileImageView addGestureRecognizer:tapGR];
+    
     self.timestampLabel.text = tweet.createdAt.timeAgoSinceNow;
     self.usernameLabel.text = tweet.author.name;
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", tweet.author.screenName];
-    self.tweetTextLabel.text = tweet.text;
-    
+
+    self.tweetTextView.text = tweet.text;
+    self.tweetTextView.dataDetectorTypes = UIDataDetectorTypeAll;
 }
 @end

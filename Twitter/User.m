@@ -27,15 +27,27 @@ NSString * const UserDidLogoutNotification = @"UserDidLogoutNotification";
         self.name = dictionary[@"name"];
         self.screenName = dictionary[@"screen_name"];
         self.profileImageUrl = dictionary[@"profile_image_url"];
-        self.tagline = dictionary[@"description"];
         self.bannerImageUrl = dictionary[@"profile_banner_url"];
 
-        self.location = dictionary[@"location"];
-        self.url = dictionary[@"url"];
+        self.tagline = [self sanitizedStringWithString:dictionary[@"description"]];
+        self.location = [self sanitizedStringWithString:dictionary[@"location"]];
+        self.url = [self sanitizedStringWithString:dictionary[@"url"]];
+        
+        self.tweets = [dictionary[@"statuses_count"] longValue];
+        self.followers = [dictionary[@"followers_count"] longValue];
+        self.following = [dictionary[@"friends_count"] longValue];
+        
 //        NSLog(@"%@", dictionary);
     }
 
     return self;
+}
+
+- (NSString *) sanitizedStringWithString:(NSObject *) string {
+    if (string == nil || string == [NSNull null])
+        return @"";
+    else
+        return string;
 }
 
 static User *_currentUser = nil;

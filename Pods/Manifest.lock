@@ -24,15 +24,18 @@ PODS:
     - AFNetworking/NSURLConnection (~> 2.4.0)
     - AFNetworking/NSURLSession (~> 2.4.0)
   - DateTools (1.4.3)
+  - TTTAttributedLabel (1.10.1)
 
 DEPENDENCIES:
   - AFNetworking
   - BDBOAuth1Manager
   - DateTools
+  - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   BDBOAuth1Manager: 0625ba20bd7d36461bbf6dc3d29276b5932b7409
   DateTools: 7c2d233ea2d4bda3a717d0cd5f58da926a5998d0
+  TTTAttributedLabel: 94bb04f1e005616002dd2cee0262a0082e533627
 
 COCOAPODS: 0.34.4

@@ -36,14 +36,60 @@
     // set the content size to be exactly two pages wide
     self.headerScrollView.contentSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width * 2, self.headerScrollView.frame.size.height);
     
-    // create a new view to house additional information
+    // create a second page in the header to house additional information
     CGRect frame = self.headerScrollView.bounds;
     frame.origin.x += [[UIScreen mainScreen] bounds].size.width;
     UIView * view = [[UIView alloc] initWithFrame:frame];
 
-    // debug
-//    view.backgroundColor = [UIColor redColor];
-//    [self.headerScrollView addSubview:view];
+    // programmatically create labels for the offscreen view (ugh this is tedious)
+    NSLog(@"'%@', '%@', '%@'", self.user.tagline, self.user.location, self.user.url);
+    
+    if (! [self.user.tagline isEqualToString:@""])
+    {
+        UILabel * descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(37, 40, 300, 40)];
+        descriptionLabel.text = self.user.tagline;
+        descriptionLabel.font = [descriptionLabel.font fontWithSize:13];
+        descriptionLabel.textColor = [UIColor whiteColor];
+        descriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        descriptionLabel.numberOfLines = 0;
+        descriptionLabel.textAlignment = NSTextAlignmentCenter;
+        [view addSubview:descriptionLabel];
+    }
+    
+    if (! [self.user.location isEqualToString:@""])
+    {
+        UILabel * locationLabel = [[UILabel alloc] initWithFrame:CGRectMake(112, 80, 150, 20)];
+        locationLabel.text = self.user.location;
+        locationLabel.font = [locationLabel.font fontWithSize:12];
+        locationLabel.textColor = [UIColor whiteColor];
+        locationLabel.textAlignment = NSTextAlignmentCenter;
+        [view addSubview:locationLabel];
+    }
+    
+    if (! [self.user.url isEqualToString:@""])
+    {
+        UILabel * urlLabel = [[UILabel alloc] initWithFrame:CGRectMake(87, 100, 200, 20)];
+        urlLabel.text = self.user.url;
+        urlLabel.font = [urlLabel.font fontWithSize:12];
+        urlLabel.textColor = [UIColor whiteColor];
+        urlLabel.textAlignment = NSTextAlignmentCenter;
+        [view addSubview:urlLabel];
+    }
+    
+    [self.headerScrollView addSubview:view];
+
+    // set borders and counts
+    self.tweetsLabelView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.tweetsLabelView.layer.borderWidth = 1.0f;
+    self.tweetsLabel.text = [NSString stringWithFormat:@"%ld tweets", self.user.tweets];
+
+    self.followersLabelView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.followersLabelView.layer.borderWidth = 1.0f;
+    self.followersLabel.text = [NSString stringWithFormat:@"%ld followers", self.user.followers];
+    
+    self.followingLabelView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.followingLabelView.layer.borderWidth = 1.0f;
+    self.followingLabel.text = [NSString stringWithFormat:@"%ld following", self.user.following];
 
     // do some effects on background image while scrolling
     self.headerScrollView.delegate = self;
@@ -53,10 +99,14 @@
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    // start at 0.6 alpha, fade up to 0.9
-    
+    // start at 0.6 alpha, fade up to 0.9 as we hit the second page
     [self.photoView setAlpha:0.6f + 0.3f * scrollView.contentOffset.x / [[UIScreen mainScreen] bounds].size.width];
+}
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    int newOffset = scrollView.contentOffset.x;
+    int newPage = (int)(newOffset/(scrollView.frame.size.width));
+    [self.headerPageControl setCurrentPage:newPage];
 }
 
 

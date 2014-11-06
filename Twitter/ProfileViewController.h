@@ -15,8 +15,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *handleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
 @property (weak, nonatomic) IBOutlet UIScrollView *headerScrollView;
+@property (weak, nonatomic) IBOutlet UIPageControl *headerPageControl;
+@property (weak, nonatomic) IBOutlet UILabel *tweetsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *followersLabel;
+@property (weak, nonatomic) IBOutlet UILabel *followingLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *tweetsLabelView;
+@property (weak, nonatomic) IBOutlet UIView *followersLabelView;
+@property (weak, nonatomic) IBOutlet UIView *followingLabelView;
 @property User * user;
+@property (weak, nonatomic) IBOutlet UIView *demoView;
 
 - (ProfileViewController *) initWithUser:(User *) user;
 

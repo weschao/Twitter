@@ -15,8 +15,9 @@
 #import "ComposeViewController.h"
 #import "TweetViewController.h"
 #import "MenuViewController.h"
+#import "ProfileViewController.h"
 
-@interface TweetsViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface TweetsViewController ()<UITableViewDataSource, UITableViewDelegate, TweetCellDelegate>
 @property NSArray * tweets;
 @property (nonatomic) TweetCell* prototypeCell;
 @property UIRefreshControl *refreshControl;
@@ -49,8 +50,15 @@
         }
         
     }
-    
 }
+
+- (void) onTapProfileImage:(User *) user
+{
+    ProfileViewController * pvc = [[ProfileViewController alloc] initWithUser:user];
+    
+    [self.navigationController pushViewController:pvc animated:YES];
+}
+
 
 - (IBAction)onLogout:(id)sender {
     [User logout];
@@ -147,7 +155,7 @@
     cell = [self.tweetTableView dequeueReusableCellWithIdentifier:@"TweetCell"];
     
     cell.tweet = self.tweets[indexPath.row];
-//    cell.callingViewController = self;
+    cell.delegate = self;
     
     return cell;
 }
