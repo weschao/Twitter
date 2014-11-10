@@ -44,11 +44,11 @@ Week 2: Home Timeline
  - [ ] Include a plus button to Add an Account
  - [ ] Swipe to delete an account
 * Stuff I added
- - [x] Display page control to indicate when the header changes.
+ - [x] Display a page control to indicate when the header changes.
  - [x] Allow links within tweets to be clickable
 
 ### Walkthrough
-![Video Walkthrough](http://i.imgur.com/fdB7qE4.gif)
+![Video Walkthrough](http://i.imgur.com/Fa5qUlX.gif)
 
 Credits
 ---------
@@ -56,4 +56,4 @@ Credits
 * [AFNetworking](https://github.com/AFNetworking/AFNetworking)
 * [DateTools](https://github.com/MatthewYork/DateTools)
 * [BDBOAuth1Manager](https://github.com/bdbergeron/BDBOAuth1Manager)
-* [TTTAttributedLabel]
+* [TTTAttributedLabel](https://github.com/mattt/TTTAttributedLabel)
