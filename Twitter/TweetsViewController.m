@@ -127,7 +127,8 @@
 // implement infinite scrolling
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    if (indexPath.row == self.tweets.count - 1)
+    // we have a bug where if we have fewer tweets than what's on the screen, it repeatedly tries to fetch more
+    if (indexPath.row == self.tweets.count - 1 && indexPath.row > 5)
     {
         Tweet* oldestTweet = self.tweets[indexPath.row];
         NSNumber * tweetId = [NSNumber numberWithLong:oldestTweet.tweetId];

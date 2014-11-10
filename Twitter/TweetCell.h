@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
+#import "TTTAttributedLabel.h"
 
 @protocol TweetCellDelegate <NSObject>
 
@@ -20,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *handleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timestampLabel;
-@property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *tweetLabel;
 
 @property NSObject<TweetCellDelegate> * delegate;
 @property (nonatomic) Tweet* tweet;

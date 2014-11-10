@@ -2,12 +2,9 @@
 
 This is a basic twitter app to read and compose tweets using the [Twitter API](https://apps.twitter.com/).
 
-Time spent: 11.5h week 1, 7h10m week 2 50m 9:40
+Time spent: 11.5h week 1, 9h10m week 2
 
 ### Features
-
-implement paging view in profile header, stats on profile page
-allow tappingon profile pictures in timeline
 
 #### Required
 
@@ -19,7 +16,6 @@ allow tappingon profile pictures in timeline
  - [x] User can pull to refresh
  - [x] User can compose a new tweet by tapping on a compose button.
  - [x] User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
- - [ ] Provide controls for retweet/favorite/reply within the timeline - push network calls into the model (e.g. Tweet.retweet)
 * Week 2: Hamburger menu
  - [x] Dragging anywhere in the view should reveal the menu.
  - [x] The menu should include links to your profile, the home timeline, and the mentions view.
@@ -39,9 +35,9 @@ Week 2: Home Timeline
  - [x] Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
  - [x] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 * Week 2: Profile page
- - [ ] Implement the paging view for the user description - needs autolayout constraints
+ - [x] Implement the paging view for the user description
  - [x] As the paging view moves, increase the opacity of the background screen.
- - [ ] Pulling down the profile page should blur and resize the header image.
+ - [x] Pulling down the profile page should zoom the header image.
 * Week 2: Account switching
  - [ ] Long press on profile picture to bring up Account view with animation
  - [ ] Tap account to switch to
@@ -49,7 +45,7 @@ Week 2: Home Timeline
  - [ ] Swipe to delete an account
 * Stuff I added
  - [x] Display page control to indicate when the header changes.
- - [ ] Allow links within tweets to be clickable
+ - [x] Allow links within tweets to be clickable
 
 ### Walkthrough
 ![Video Walkthrough](http://i.imgur.com/fdB7qE4.gif)

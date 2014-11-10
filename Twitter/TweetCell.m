@@ -9,8 +9,9 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "NSDate+DateTools.h"
+#import "TTTAttributedLabel.h"
 
-@interface Tweet()
+@interface TweetCell()<TTTAttributedLabelDelegate>
 
 @end
 
@@ -50,7 +51,13 @@
     self.usernameLabel.text = tweet.author.name;
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", tweet.author.screenName];
 
-    self.tweetTextView.text = tweet.text;
-    self.tweetTextView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.tweetLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+    self.tweetLabel.text = tweet.text;
+    self.tweetLabel.delegate = self;
+}
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
+{
+    [[UIApplication sharedApplication] openURL:url];
 }
 @end

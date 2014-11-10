@@ -94,7 +94,22 @@
     // do some effects on background image while scrolling
     self.headerScrollView.delegate = self;
     
+    // add an effect when we pull down the profile page
+    UIPanGestureRecognizer * panGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPullDown:)];
+    [self.view addGestureRecognizer:panGR];
+}
 
+- (void) onPullDown:(UIPanGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateChanged)
+    {
+        float scale = 1 + [sender translationInView:self.view].y / self.view.bounds.size.height * 2;
+        self.photoView.transform = CGAffineTransformMakeScale(scale, scale);
+    }
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        self.photoView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    }
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView

@@ -24,7 +24,6 @@
 @property (weak, nonatomic) IBOutlet UIView *followersLabelView;
 @property (weak, nonatomic) IBOutlet UIView *followingLabelView;
 @property User * user;
-@property (weak, nonatomic) IBOutlet UIView *demoView;
 
 - (ProfileViewController *) initWithUser:(User *) user;
 

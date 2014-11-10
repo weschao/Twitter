@@ -14,7 +14,7 @@
 #import "ComposeViewController.h"
 #import "ProfileViewController.h"
 
-@interface TweetViewController ()
+@interface TweetViewController ()<TTTAttributedLabelDelegate>
 
 @end
 
@@ -104,8 +104,10 @@
     self.createdAtLabel.text = self.tweet.createdAt.timeAgoSinceNow;
     self.nameLabel.text = self.tweet.author.name;
     self.handleLabel.text = [NSString stringWithFormat:@"@%@", self.tweet.author.screenName];
+    self.tweetTextLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     self.tweetTextLabel.text = self.tweet.text;
-    
+    self.tweetTextLabel.delegate = self;
+
     [self updateFavoriteLabel];
     
     if (self.tweet.favorited)
@@ -115,6 +117,12 @@
 
     self.title = @"Tweet";
 }
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
+{
+    [[UIApplication sharedApplication] openURL:url];
+}
+
 
 - (void) updateFavoriteLabel
 {

@@ -9,6 +9,7 @@
 #import "MenuViewController.h"
 #import "ProfileViewController.h"
 #import "TweetsViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface MenuViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property BOOL displayingMenu;
@@ -30,9 +31,13 @@
     self.menuTableView.dataSource = self;
     self.menuTableView.delegate = self;
 
-    // set up off screen
-    self.view.frame = CGRectMake(-150.0f, 48.0f, 150.0f, 200.0f);
+    // set up off screen hamburger menu
+    self.view.frame = CGRectMake(-150.0f, 48.0f, 150.0f, 133.0f);
 
+    // set background color
+    UIColor * blueColor = [UIColor colorWithRed:84.0/255.0f green:172.0/255.0f blue:238.0/255.0f alpha:1];
+    self.menuTableView.backgroundColor = blueColor;
+    
     [self.menuTableView reloadData];
 }
 
@@ -78,14 +83,20 @@
     switch (indexPath.row)
     {
         case 0:
-            cell.textLabel.text = @"Home";
+            // makes the separator too short
+            [cell.imageView setImageWithURL:[NSURL URLWithString: [User currentUser].profileImageUrl]];
+            cell.textLabel.text = [User currentUser].name;
             break;
         case 1:
-            cell.textLabel.text = @"Profile";
+            cell.textLabel.text = @"Home";
             break;
         case 2:
             cell.textLabel.text = @"Mentions";
     }
+    
+    UIColor * blueColor = [UIColor colorWithRed:84.0/255.0f green:172.0/255.0f blue:238.0/255.0f alpha:1];
+    cell.backgroundColor = blueColor;
+    cell.textLabel.textColor = [UIColor whiteColor];
     
     return cell;
 }
@@ -96,20 +107,20 @@
     {
         case 0:
         {
+            // Load the user's profile
+            ProfileViewController * pvc = [[ProfileViewController alloc] initWithUser:[User currentUser]];
+            
+            [self.callingViewController.navigationController pushViewController:pvc animated:YES];
+            break;
+        }
+        case 1:
+        {
             // Load the home timeline
             TweetsViewController * tvc = [[TweetsViewController alloc] init];
             tvc.timelineSelector = @selector(homeTimelineWithParams:completion:);
             
             [self.callingViewController.navigationController pushViewController:tvc animated:YES];
-                                          
-            break;
-        }
-        case 1:
-        {
-            // Load the user's profile
-            ProfileViewController * pvc = [[ProfileViewController alloc] initWithUser:[User currentUser]];
             
-            [self.callingViewController.navigationController pushViewController:pvc animated:YES];
             break;
         }
         case 2:

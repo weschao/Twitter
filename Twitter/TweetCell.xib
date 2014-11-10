@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zZa-o3-xL5">
-                        <rect key="frame" x="0.0" y="2" width="48" height="48"/>
+                        <rect key="frame" x="0.0" y="3" width="48" height="48"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="width" constant="48" id="3QU-4N-JSq"/>
@@ -23,7 +23,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The New York Times" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cEo-4r-Kjn">
-                        <rect key="frame" x="56" y="4" width="141" height="18"/>
+                        <rect key="frame" x="56" y="5" width="141" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="aCr-ga-s2b"/>
                         </constraints>
@@ -32,41 +32,41 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@nytimes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnh-Vv-rxZ">
-                        <rect key="frame" x="205" y="7" width="50" height="14"/>
+                        <rect key="frame" x="205" y="8" width="50" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lvh-eN-Ww3">
-                        <rect key="frame" x="358" y="6" width="13" height="14"/>
+                        <rect key="frame" x="358" y="7" width="13" height="14"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="This is a tweet!" translatesAutoresizingMaskIntoConstraints="NO" id="Zye-EA-Xg2">
-                        <rect key="frame" x="56" y="28" width="310" height="72"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7K-Mx-3fi" customClass="TTTAttributedLabel">
+                        <rect key="frame" x="56" y="30" width="310" height="79"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="310" id="dqz-ab-BVE"/>
+                            <constraint firstAttribute="width" constant="310" id="8LV-20-HWx"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    </textView>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="xnh-Vv-rxZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="1pg-qs-bo3"/>
-                    <constraint firstItem="cEo-4r-Kjn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="Fay-DZ-YEx"/>
+                    <constraint firstAttribute="bottom" secondItem="L7K-Mx-3fi" secondAttribute="bottom" constant="7" id="1A0-cK-LPJ"/>
+                    <constraint firstItem="xnh-Vv-rxZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="1pg-qs-bo3"/>
+                    <constraint firstItem="cEo-4r-Kjn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Fay-DZ-YEx"/>
                     <constraint firstItem="cEo-4r-Kjn" firstAttribute="leading" secondItem="zZa-o3-xL5" secondAttribute="trailing" constant="8" id="UcR-aY-Nfc"/>
-                    <constraint firstItem="zZa-o3-xL5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="YSw-ew-Y6c"/>
+                    <constraint firstItem="L7K-Mx-3fi" firstAttribute="top" secondItem="cEo-4r-Kjn" secondAttribute="bottom" constant="7" id="VBL-xP-I0k"/>
+                    <constraint firstItem="zZa-o3-xL5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="YSw-ew-Y6c"/>
                     <constraint firstItem="xnh-Vv-rxZ" firstAttribute="leading" secondItem="cEo-4r-Kjn" secondAttribute="trailing" constant="8" id="cwT-Nx-SoH"/>
                     <constraint firstItem="Lvh-eN-Ww3" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-53" id="cxP-ie-SgC"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Zye-EA-Xg2" secondAttribute="bottom" constant="8" id="dn6-mb-VyQ"/>
-                    <constraint firstItem="Lvh-eN-Ww3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" id="ehW-8H-H0H"/>
+                    <constraint firstItem="L7K-Mx-3fi" firstAttribute="leading" secondItem="zZa-o3-xL5" secondAttribute="trailing" constant="8" id="d5h-mv-nbI"/>
+                    <constraint firstItem="Lvh-eN-Ww3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="ehW-8H-H0H"/>
                     <constraint firstAttribute="trailing" secondItem="Lvh-eN-Ww3" secondAttribute="trailing" constant="8" id="i35-hw-U9v"/>
                     <constraint firstItem="Lvh-eN-Ww3" firstAttribute="leading" secondItem="xnh-Vv-rxZ" secondAttribute="trailing" constant="33" id="lmy-RK-LEk"/>
                     <constraint firstItem="zZa-o3-xL5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mCx-1Y-RrD"/>
-                    <constraint firstItem="Zye-EA-Xg2" firstAttribute="leading" secondItem="zZa-o3-xL5" secondAttribute="trailing" constant="8" id="pEV-kT-I8H"/>
-                    <constraint firstItem="Zye-EA-Xg2" firstAttribute="top" secondItem="cEo-4r-Kjn" secondAttribute="bottom" constant="6" id="zZa-MU-98P"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -79,10 +79,10 @@
                 <outlet property="handleLabel" destination="xnh-Vv-rxZ" id="vzw-mj-53i"/>
                 <outlet property="profileImageView" destination="zZa-o3-xL5" id="b0y-ua-eN3"/>
                 <outlet property="timestampLabel" destination="Lvh-eN-Ww3" id="XGR-8T-g7O"/>
-                <outlet property="tweetTextView" destination="Zye-EA-Xg2" id="b38-xM-a2B"/>
+                <outlet property="tweetLabel" destination="L7K-Mx-3fi" id="CHg-0B-vb5"/>
                 <outlet property="usernameLabel" destination="cEo-4r-Kjn" id="8so-Mg-lqb"/>
             </connections>
-            <point key="canvasLocation" x="355.5" y="235.5"/>
+            <point key="canvasLocation" x="355.5" y="234.5"/>
         </tableViewCell>
     </objects>
 </document>
